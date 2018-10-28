@@ -12,25 +12,31 @@ export default {
     PostList
   },
 
-  asyncData(context, callback) {
-    setTimeout(() => {
-      callback(null, {
-        loadedPost: [
-          {
-            id: '1',
-            title: 'First Post',
-            previewText: 'This is our first post!',
-            thumbnail: 'https://images.pexels.com/photos/1323592/pexels-photo-1323592.jpeg?auto=compress&cs=tinysrgb&h=650&w=940'
-          },
-          {
-            id: '2',
-            title: 'Second Post',
-            previewText: 'This is our second post!',
-            thumbnail: 'https://images.pexels.com/photos/1323592/pexels-photo-1323592.jpeg?auto=compress&cs=tinysrgb&h=650&w=940'
-          }
-        ]
-      })
-    }, 1500);
-  },
+  asyncData(context) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve({
+          loadedPost: [
+            {
+              id: '1',
+              title: 'First Post',
+              previewText: 'This is our first post!',
+              thumbnail: 'https://images.pexels.com/photos/1323592/pexels-photo-1323592.jpeg?auto=compress&cs=tinysrgb&h=650&w=940'
+            },
+            {
+              id: '2',
+              title: 'Second Post',
+              previewText: 'This is our second post!',
+              thumbnail: 'https://images.pexels.com/photos/1323592/pexels-photo-1323592.jpeg?auto=compress&cs=tinysrgb&h=650&w=940'
+            }
+          ]
+        })
+      }, 1500)
+    }).then(data => {
+      return data
+    }).catch(error => {
+      context.error(new Error())
+    })
+  }
 }
 </script>
