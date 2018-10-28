@@ -31,8 +31,8 @@ export default {
 
   methods: {
     onSubmitted(editedPost) {
-      axios.put(`https://nuxt-blog-9836b.firebaseio.com/posts/${ this.$route.params.id }.json`, editedPost)
-        .then(res => console.log(res))
+      axios.put(`https://nuxt-blog-9836b.firebaseio.com/posts/${ this.$route.params.postId }.json`, editedPost)
+        .then(res => this.$router.push('/admin'))
         .catch(e => console.log(e))
     }
   }
