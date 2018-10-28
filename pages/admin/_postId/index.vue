@@ -1,7 +1,9 @@
 <template>
   <div class="admin-post-page">
     <section class="update-form">
-      <AdminPostForm :post="loadedPost"/>
+      <AdminPostForm
+        :post="loadedPost"
+        @submit="onSubmitted"/>
     </section>
   </div>
 </template>
@@ -24,6 +26,14 @@ export default {
         content: 'Super amazing, thanks for that!',
         thumbnailLink: 'https://images.pexels.com/photos/1323592/pexels-photo-1323592.jpeg?auto=compress&cs=tinysrgb&h=650&w=940'
       }
+    }
+  },
+
+  methods: {
+    onSubmitted(editedPost) {
+      axios.put(`https://nuxt-blog-9836b.firebaseio.com/posts/${ this.$route.params.id }.json`, editedPost)
+        .then(res => console.log(res))
+        .catch(e => console.log(e))
     }
   }
 }
