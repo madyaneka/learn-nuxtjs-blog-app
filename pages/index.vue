@@ -3,7 +3,7 @@
     <section class="intro">
       <h1>Get the latest tech news!</h1>
     </section>
-    <PostList/>
+    <PostList :posts="loadedPost"/>
   </div>
 </template>
 
@@ -13,7 +13,28 @@ import PostList from '@/components/Posts/PostList'
 export default {
   components: {
     PostList
-  }
+  },
+  asyncData(context, callback) {
+    console.log('async data is executed') // the log will appear on the server, not on the client (for the first rendered only)
+    setTimeout(() => {
+      callback(null, {
+        loadedPost: [
+          {
+            id: '1',
+            title: 'First Post',
+            previewText: 'This is our first post!',
+            thumbnail: 'https://images.pexels.com/photos/1323592/pexels-photo-1323592.jpeg?auto=compress&cs=tinysrgb&h=650&w=940'
+          },
+          {
+            id: '2',
+            title: 'Second Post',
+            previewText: 'This is our second post!',
+            thumbnail: 'https://images.pexels.com/photos/1323592/pexels-photo-1323592.jpeg?auto=compress&cs=tinysrgb&h=650&w=940'
+          }
+        ]
+      })
+    }, 1500);
+  },
 }
 </script>
 
