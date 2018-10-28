@@ -1,6 +1,6 @@
 <template>
   <div class="post-list">
-    <PostList :posts="loadedPost"/>
+    <PostList :posts="loadedPosts"/>
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve({
-          loadedPost: [
+          loadedPosts: [
             {
               id: '1',
               title: 'First Post',
@@ -37,6 +37,10 @@ export default {
     }).catch(error => {
       context.error(new Error())
     })
+  },
+
+  created() {
+    this.$store.dispatch('setPosts', this.loadedPosts)
   }
 }
 </script>
