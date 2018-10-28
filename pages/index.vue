@@ -15,7 +15,7 @@ export default {
     PostList
   },
   asyncData(context, callback) {
-    console.log('async data is executed') // the log will appear on the server, not on the client (for the first rendered only)
+    console.log(context) // the log will appear on the server, not on the client (for the first rendered only)
     setTimeout(() => {
       callback(null, {
         loadedPost: [
