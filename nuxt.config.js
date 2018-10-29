@@ -42,7 +42,12 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/axios'
   ],
+
+  axios: {
+    baseURL: process.env.BASE_URL || 'https://nuxt-blog-9836b.firebaseio.com'
+  },
 
   /*
   ** Build configuration
