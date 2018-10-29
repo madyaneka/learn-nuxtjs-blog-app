@@ -60,5 +60,10 @@ module.exports = {
         })
       }
     }
+  },
+
+  // Environment variables
+  env: {
+    baseUrl: process.env.BASE_URL || 'https://nuxt-blog-9836b.firebaseio.com'
   }
 }
